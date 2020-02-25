@@ -16,8 +16,8 @@
 		C65AD85E23FFC74300E09735 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD85D23FFC74300E09735 /* HomeView.swift */; };
 		C65AD86023FFC75A00E09735 /* TicketCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD85F23FFC75A00E09735 /* TicketCardView.swift */; };
 		C65AD86223FFC76800E09735 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD86123FFC76800E09735 /* MenuView.swift */; };
-		C65C6D0F24040BC6004E21A6 /* TicketStatusProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D0E24040BC6004E21A6 /* TicketStatusProgressView.swift */; };
-		C65C6D112404185F004E21A6 /* StatusCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D102404185F004E21A6 /* StatusCircle.swift */; };
+		C65C6D1C24054D7F004E21A6 /* StatusCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D1B24054D7F004E21A6 /* StatusCircle.swift */; };
+		C65C6D1E24054D8F004E21A6 /* TicketStatusProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D1D24054D8F004E21A6 /* TicketStatusProgressView.swift */; };
 		C69901F623FFCE3800190EC4 /* ShowActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F523FFCE3800190EC4 /* ShowActionButton.swift */; };
 		C69901F823FFCEBA00190EC4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F723FFCEBA00190EC4 /* TestView.swift */; };
 /* End PBXBuildFile section */
@@ -34,8 +34,8 @@
 		C65AD85D23FFC74300E09735 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C65AD85F23FFC75A00E09735 /* TicketCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardView.swift; sourceTree = "<group>"; };
 		C65AD86123FFC76800E09735 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		C65C6D0E24040BC6004E21A6 /* TicketStatusProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStatusProgressView.swift; sourceTree = "<group>"; };
-		C65C6D102404185F004E21A6 /* StatusCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCircle.swift; sourceTree = "<group>"; };
+		C65C6D1B24054D7F004E21A6 /* StatusCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCircle.swift; sourceTree = "<group>"; };
+		C65C6D1D24054D8F004E21A6 /* TicketStatusProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketStatusProgressView.swift; sourceTree = "<group>"; };
 		C69901F523FFCE3800190EC4 /* ShowActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowActionButton.swift; sourceTree = "<group>"; };
 		C69901F723FFCEBA00190EC4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,11 +97,19 @@
 				C65AD85F23FFC75A00E09735 /* TicketCardView.swift */,
 				C65AD86123FFC76800E09735 /* MenuView.swift */,
 				C69901F523FFCE3800190EC4 /* ShowActionButton.swift */,
-				C65C6D0E24040BC6004E21A6 /* TicketStatusProgressView.swift */,
-				C65C6D102404185F004E21A6 /* StatusCircle.swift */,
 				C69901F723FFCEBA00190EC4 /* TestView.swift */,
+				C65C6D2024054DA9004E21A6 /* StatusProgressBar */,
 			);
 			path = TicketOverwiew;
+			sourceTree = "<group>";
+		};
+		C65C6D2024054DA9004E21A6 /* StatusProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				C65C6D1D24054D8F004E21A6 /* TicketStatusProgressView.swift */,
+				C65C6D1B24054D7F004E21A6 /* StatusCircle.swift */,
+			);
+			path = StatusProgressBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,14 +185,14 @@
 			files = (
 				C65AD86023FFC75A00E09735 /* TicketCardView.swift in Sources */,
 				C65AD86223FFC76800E09735 /* MenuView.swift in Sources */,
-				C65C6D0F24040BC6004E21A6 /* TicketStatusProgressView.swift in Sources */,
 				C65AD84A23FFC6FD00E09735 /* AppDelegate.swift in Sources */,
 				C65AD85E23FFC74300E09735 /* HomeView.swift in Sources */,
+				C65C6D1C24054D7F004E21A6 /* StatusCircle.swift in Sources */,
 				C69901F823FFCEBA00190EC4 /* TestView.swift in Sources */,
 				C69901F623FFCE3800190EC4 /* ShowActionButton.swift in Sources */,
+				C65C6D1E24054D8F004E21A6 /* TicketStatusProgressView.swift in Sources */,
 				C65AD84C23FFC6FD00E09735 /* SceneDelegate.swift in Sources */,
 				C65AD84E23FFC6FD00E09735 /* Home.swift in Sources */,
-				C65C6D112404185F004E21A6 /* StatusCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

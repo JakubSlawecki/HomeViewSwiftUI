@@ -28,53 +28,48 @@ struct TickedCardView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            TicketCardInnerView(isSelected: self.$isSelected,
-                                title: self.title,
-                                subtitle: self.subtitle,
-                                briefSummary: self.briefSummary,
-                                description: self.description,
-                                normalCardHeight: self.normalCardHeight)
+            TicketCardViewContainer(isSelected: self.$isSelected,
+                                    title: self.title,
+                                    subtitle: self.subtitle,
+                                    briefSummary: self.briefSummary,
+                                    description: self.description,
+                                    normalCardHeight: self.normalCardHeight)
                 .onTapGesture {
                     withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
                         self.isSelected.toggle()
                         self.control.anyTicketTriggered.toggle()
                     }
                 }
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-            .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
-            .offset(x: self.isSelected ? -geometry.frame(in: .global).minX : 0,
-                    y: self.isSelected ? -geometry.frame(in: .global).minY : 0)
-            .frame(height: self.isSelected ? screen.height : nil)
-            .frame(width: self.isSelected ? screen.width : nil)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
+                .offset(x: self.isSelected ? -geometry.frame(in: .global).minX : 0,
+                        y: self.isSelected ? -geometry.frame(in: .global).minY : 0)
+                .frame(height: self.isSelected ? screen.height : nil)
+                .frame(width: self.isSelected ? screen.width : nil)
         }
-        .frame(width: screen.width - (normalCardHorizontalPadding * 2))
-        .frame(height: normalCardHeight)
         
-        //.offset(y: control.anyTicketTriggered && !isSelected ? screen.height : 0)
-        .opacity(control.anyTicketTriggered && !isSelected ? 0 : 1)
+            .frame(width: screen.width - (normalCardHorizontalPadding * 2))
+            .frame(height: normalCardHeight)
+            .opacity(control.anyTicketTriggered && !isSelected ? 0 : 1)
+            .blur(radius: control.anyTicketTriggered && !isSelected ? 20 : 0)
     }
+    
 }
 
 
-#if DEBUG
 struct TickedCardView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            TickedCardView(isSelected: false,
-                           title: "Apointment",
-                           subtitle: "20.02.2020",
-                           briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.",
-                           description: desPlaceholer)
-                
-            .environmentObject(TicketCardView_Control())
-            
-            TopView(isSelected: .constant(false), title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.")        }
+        
+            TickedCardView(isSelected: false, title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer)
+                .environmentObject(TicketCardView_Control())
+        
     }
 }
-#endif
 
-struct TicketCardInnerView: View {
+
+struct TicketCardViewContainer: View {
     @Binding var isSelected: Bool
+    @State var viewState = CGSize.zero
     
     var title: String
     var subtitle: String
@@ -84,42 +79,38 @@ struct TicketCardInnerView: View {
     
     
     var body: some View {
-        //GeometryReader { geometry in
+        GeometryReader { geometry in
             VStack {
-                
-                TopView(isSelected: self.$isSelected,
-                        title: self.title,
-                        subtitle: self.subtitle,
-                        briefSummary: self.briefSummary)
-                    .frame(height: self.normalCardHeight)
-                    .background(
-                        //putt image here or map?
-                        //MapView()
-                        
-//                        VStack {
-//                            Image("MapExample")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fill)
-//                                .frame(maxWidth: geometry.size.width,
-//                                       maxHeight: geometry.size.height)
-//    //                            .position(x: geometry.size.width / 2 ,
-//    //                                      y:  geometry.size.height / 2 )
-//    //                            .offset(y: geometry.frame(in: .global).minY / 2)
-//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-//                        }
-                        Color.clear
-                    )
-                
-                if self.isSelected {
-                    ScrollView {
-                        ExpandableView(isSelected: self.$isSelected, description: self.description)
+                    
+                    TopView(isSelected: self.$isSelected,
+                            title: self.title,
+                            subtitle: self.subtitle,
+                            briefSummary: self.briefSummary)
+                        .frame(height: self.normalCardHeight)
+                        .background(Color.clear)
+                    
+                    if self.isSelected {
+                       
+                            ExpandableView(isSelected: self.$isSelected, description: self.description)
+                         Spacer()
                     }
-                    .background(Color.white)
+                    
                 }
-                
-            }
-            .background(Color.white)
-        //}
+                    .background(Color.white)
+            .offset(y: self.isSelected ? self.viewState.height/6 : 0)
+            
+                .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
+                    
+                .gesture( self.isSelected ?
+                        (DragGesture().onChanged { value in
+                            self.viewState = value.translation
+                        }
+                        .onEnded { value in
+                            self.viewState = .zero
+                    }) : (nil)
+            )
+        }
+       
     }
 }
 
@@ -134,17 +125,6 @@ struct TopView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {
-//                if self.isSelected {
-//                    //Push content from safe area
-//                    Rectangle()
-//                        .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
-//                        .frame(maxWidth: .infinity)
-//                        .foregroundColor(Color.clear)
-//                        .onTapGesture {
-//                            print(geometry.safeAreaInsets.top)
-//                        }
-//                }
-                
                 
                 Spacer()
                 
@@ -193,6 +173,12 @@ struct ExpandableView: View {
             .padding()
     }
 }
+
+
+
+
+
+
 
 
 let screen = UIScreen.main.bounds

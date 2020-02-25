@@ -98,18 +98,25 @@ struct ProgressBar: View {
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                             .frame(height: 1)
                             .foregroundColor(Color.gray).opacity(0.5)
+                            .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(1), radius: 1, x: -1, y: -1)
+                            .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 1, x: 0.5, y: 0.5)
+                        
                         
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                         .frame(width: geometry.size.width * self.currentProgress, height: 3)
                         .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.431372549, blue: 0.2274509804, alpha: 1)))
-                            .animation(.easeIn)
+                            .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(1), radius: 5, x: -0.5, y: -0.4)
+                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 1, x: 0.5, y: 0.5)
                     }
+                    
+                    
                     
                     
                     
                     
                         StatusCircle(state: self.currentProgress == 0 ? .active : .finished, text: "CREATED")
                             .offset(x: -geometry.size.width/2, y: geometry.size.height/9)
+                            
                         
                         
                         

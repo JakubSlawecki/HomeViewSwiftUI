@@ -16,40 +16,44 @@ struct HomeView: View {
     
     var body: some View {
         
-        ScrollView {
-            TopMenu(showCreateTicket: $showCreateTicket)
+        ScrollView(.vertical) {
+            
+            ScrollViewTitleView(showCreateTicket: $showCreateTicket)
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
-               //.padding(.bottom, 5)
+                .blur(radius: control.anyTicketTriggered ? 20 : 0)
             
             ForEach(self.tickets) { ticked in
-                TickedCardView (
-                    title: ticked.title,
-                    subtitle: ticked.subtitle,
-                    briefSummary: ticked.briefSummary,
-                    description: ticked.description
-                )
-                    .environmentObject(self.control)
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 30)
+                    TickedCardView (title: ticked.title,
+                                    subtitle: ticked.subtitle,
+                                    briefSummary: ticked.briefSummary,
+                                    description: ticked.description)
+                        .environmentObject(self.control)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 30)
             }
+            
         }
-        
-        
+    
     }
+    
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
+        
         HomeView(showCreateTicket: .constant(false))
             .environmentObject(TicketCardView_Control())
+        
     }
+    
 }
 
-struct TopMenu: View {
+struct ScrollViewTitleView: View {
     @Binding var showCreateTicket: Bool
     
     var body: some View {
+        
         VStack(alignment: .leading) {
             Text("WED, JULY 31")
                 .font(.caption)
@@ -66,12 +70,11 @@ struct TopMenu: View {
                 ShowActionButton(systemSymbol: "plus") {
                     self.showCreateTicket.toggle()
                 }
+                
             }
+            
         }
+        
     }
+    
 }
-
-
-
-
-
