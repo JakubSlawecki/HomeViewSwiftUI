@@ -16,23 +16,32 @@ struct HomeView: View {
     
     var body: some View {
         
-        ScrollView(.vertical) {
-            
-            ScrollViewTitleView(showCreateTicket: $showCreateTicket)
-                .padding(.horizontal, 20)
-                .padding(.top, 20)
-                .blur(radius: control.anyTicketTriggered ? 20 : 0)
-            
-            ForEach(self.tickets) { ticked in
-                    TickedCardView (title: ticked.title,
-                                    subtitle: ticked.subtitle,
-                                    briefSummary: ticked.briefSummary,
-                                    description: ticked.description)
-                        .environmentObject(self.control)
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 30)
+        ZStack {
+            ScrollView(.vertical) {
+                
+                ScrollViewTitleView(showCreateTicket: $showCreateTicket)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+                    .blur(radius: control.anyTicketTriggered ? 20 : 0)
+                
+                ForEach(self.tickets) { ticked in
+                        TickedCardView (title: ticked.title,
+                                        subtitle: ticked.subtitle,
+                                        briefSummary: ticked.briefSummary,
+                                        description: ticked.description)
+                            .environmentObject(self.control)
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 30)
+                }
+                
             }
             
+            VStack {
+                SystemMaterialView(style: .regular)
+                    .frame(height: self.control.anyTicketTriggered ? 0 : 40)
+                Spacer()
+            }
+            .edgesIgnoringSafeArea(.all)
         }
     
     }

@@ -18,6 +18,7 @@
 		C65AD86223FFC76800E09735 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD86123FFC76800E09735 /* MenuView.swift */; };
 		C65C6D1C24054D7F004E21A6 /* StatusCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D1B24054D7F004E21A6 /* StatusCircle.swift */; };
 		C65C6D1E24054D8F004E21A6 /* TicketStatusProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D1D24054D8F004E21A6 /* TicketStatusProgressView.swift */; };
+		C65C6D242405BCE5004E21A6 /* SystemMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D232405BCE5004E21A6 /* SystemMaterialView.swift */; };
 		C69901F623FFCE3800190EC4 /* ShowActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F523FFCE3800190EC4 /* ShowActionButton.swift */; };
 		C69901F823FFCEBA00190EC4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F723FFCEBA00190EC4 /* TestView.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		C65AD86123FFC76800E09735 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		C65C6D1B24054D7F004E21A6 /* StatusCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCircle.swift; sourceTree = "<group>"; };
 		C65C6D1D24054D8F004E21A6 /* TicketStatusProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketStatusProgressView.swift; sourceTree = "<group>"; };
+		C65C6D232405BCE5004E21A6 /* SystemMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMaterialView.swift; sourceTree = "<group>"; };
 		C69901F523FFCE3800190EC4 /* ShowActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowActionButton.swift; sourceTree = "<group>"; };
 		C69901F723FFCEBA00190EC4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +99,7 @@
 				C65AD85F23FFC75A00E09735 /* TicketCardView.swift */,
 				C65AD86123FFC76800E09735 /* MenuView.swift */,
 				C69901F523FFCE3800190EC4 /* ShowActionButton.swift */,
+				C65C6D232405BCE5004E21A6 /* SystemMaterialView.swift */,
 				C69901F723FFCEBA00190EC4 /* TestView.swift */,
 				C65C6D2024054DA9004E21A6 /* StatusProgressBar */,
 			);
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65C6D242405BCE5004E21A6 /* SystemMaterialView.swift in Sources */,
 				C65AD86023FFC75A00E09735 /* TicketCardView.swift in Sources */,
 				C65AD86223FFC76800E09735 /* MenuView.swift in Sources */,
 				C65AD84A23FFC6FD00E09735 /* AppDelegate.swift in Sources */,
