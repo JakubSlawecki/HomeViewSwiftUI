@@ -97,7 +97,7 @@ struct TicketCardViewContainer: View {
                     
                 }
                     .background(Color.white)
-            .offset(y: self.isSelected ? self.viewState.height/6 : 0)
+            .offset(y: self.isSelected ? self.viewState.height/2 : 0)
             
                 .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
                     
@@ -175,30 +175,3 @@ struct ExpandableView: View {
 }
 
 
-
-
-
-
-
-
-let screen = UIScreen.main.bounds
-
-//Ticket to -> Card
-struct Card : Identifiable {
-    var id = UUID()
-    
-    var subtitle: String
-    var title: String
-    var briefSummary: String
-    var description: String
-}
-
-//MARK: Fake Data
-let desPlaceholer = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna ac. Quis enim lobortis scelerisque fermentum. Phasellus faucibus scelerisque eleifend donec pretium. Nec ullamcorper sit amet risus nullam eget. Convallis convallis tellus id interdum velit. A erat nam at lectus urna duis convallis convallis tellus. Id ornare arcu odio ut sem nulla pharetra diam sit. Cum sociis natoque penatibus et magnis. Viverra accumsan in nisl nisi scelerisque eu ultrices. Et netus et malesuada fames ac turpis egestas integer. Montes nascetur ridiculus mus mauris vitae ultricies leo. Sed felis eget velit aliquet sagittis id consectetur."
-
-let cardData: [Card] = [
-    Card(subtitle: "24.02.2020", title: "Apointment Confirmed", briefSummary: "Our technicians will be there on Wednesday February 26, 2020.", description: desPlaceholer),
-    Card(subtitle: "21.02.2020", title: "Apointment Ongoing", briefSummary: "our technicians will be there on Monday February 24, 2020", description: desPlaceholer),
-    Card(subtitle: "21.02.2020", title: "Apointment Done", briefSummary: "Job Done", description: desPlaceholer),
-    Card(subtitle: "20.02.2020", title: "Apointment Done", briefSummary: "Job Done etc", description: desPlaceholer),
-]

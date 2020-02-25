@@ -78,3 +78,25 @@ struct ScrollViewTitleView: View {
     }
     
 }
+
+
+//MARK: Fake Data
+
+//Ticket to -> Card
+struct Card : Identifiable {
+    var id = UUID()
+    
+    var subtitle: String
+    var title: String
+    var briefSummary: String
+    var description: String
+}
+
+let desPlaceholer = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna ac. Quis enim lobortis scelerisque fermentum. Phasellus faucibus scelerisque eleifend donec pretium. Nec ullamcorper sit amet risus nullam eget. Convallis convallis tellus id interdum velit."
+
+let cardData: [Card] = [
+    Card(subtitle: "24.02.2020", title: "Apointment Confirmed", briefSummary: "Our technicians will be there on Wednesday February 26, 2020.", description: desPlaceholer),
+    Card(subtitle: "21.02.2020", title: "Apointment Ongoing", briefSummary: "our technicians will be there on Monday February 24, 2020", description: desPlaceholer),
+    Card(subtitle: "21.02.2020", title: "Apointment Done", briefSummary: "Job Done", description: desPlaceholer),
+    Card(subtitle: "20.02.2020", title: "Apointment Done", briefSummary: "Job Done etc", description: desPlaceholer),
+]
