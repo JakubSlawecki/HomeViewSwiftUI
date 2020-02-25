@@ -60,8 +60,12 @@ struct TickedCardView: View {
 struct TickedCardView_Previews: PreviewProvider {
     static var previews: some View {
         
+        Group {
             TickedCardView(isSelected: false, title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer)
                 .environmentObject(TicketCardView_Control())
+            
+            TicketCardViewContainer(isSelected: .constant(true), title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer, normalCardHeight: CGFloat(350))
+        }
         
     }
 }
@@ -81,36 +85,31 @@ struct TicketCardViewContainer: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
+                TopView(isSelected: self.$isSelected,
+                        title: self.title,
+                        subtitle: self.subtitle,
+                        briefSummary: self.briefSummary)
                     
-                    TopView(isSelected: self.$isSelected,
-                            title: self.title,
-                            subtitle: self.subtitle,
-                            briefSummary: self.briefSummary)
-                        .frame(height: self.normalCardHeight)
-                        .background(Color.clear)
+                    .frame(height: self.normalCardHeight)
+                    //.background(Color.clear)
+                
+                if self.isSelected {
+                    ExpandableView(isSelected: self.$isSelected, description: self.description)
                     
-                    if self.isSelected {
-                       
-                            ExpandableView(isSelected: self.$isSelected, description: self.description)
-                         Spacer()
-                    }
-                    
+                    Spacer()
                 }
-                    .background(Color.white)
+                
+            }
+            .background(Color.white)
             .offset(y: self.isSelected ? self.viewState.height/2 : 0)
-            
-                .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
-                    
-                .gesture( self.isSelected ?
-                        (DragGesture().onChanged { value in
-                            self.viewState = value.translation
-                        }
-                        .onEnded { value in
-                            self.viewState = .zero
-                    }) : (nil)
-            )
+            .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
+            .gesture(self.isSelected ?
+                (DragGesture().onChanged { value in
+                    self.viewState = value.translation }
+                                .onEnded { value in
+                                    self.viewState = .zero }) : (nil))
         }
-       
+        
     }
 }
 

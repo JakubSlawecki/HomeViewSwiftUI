@@ -20,7 +20,7 @@ struct HomeView: View {
             
             ScrollViewTitleView(showCreateTicket: $showCreateTicket)
                 .padding(.horizontal, 20)
-                .padding(.top, 10)
+                .padding(.top, 20)
                 .blur(radius: control.anyTicketTriggered ? 20 : 0)
             
             ForEach(self.tickets) { ticked in
@@ -53,18 +53,18 @@ struct ScrollViewTitleView: View {
     @Binding var showCreateTicket: Bool
     
     var body: some View {
-        
         VStack(alignment: .leading) {
             Text("WED, JULY 31")
                 .font(.caption)
-                .padding(.bottom, -10)
-                .foregroundColor(.gray)
+                .fontWeight(.semibold)
+                .padding(.bottom, -5)
+                .foregroundColor(Color(.secondaryLabel))
             
             HStack(alignment: .center) {
                 Text("Tickets")
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color(.label))
                 Spacer()
                 
                 ShowActionButton(systemSymbol: "plus") {
@@ -74,6 +74,7 @@ struct ScrollViewTitleView: View {
             }
             
         }
+        .padding(.bottom, -5)
         
     }
     

@@ -53,22 +53,22 @@ struct UnactiveCircle: View {
     var text: String
     
     var body: some View {
-        
             VStack {
-                
                 ZStack {
                     Circle()
-                    .frame(width: 5, height: 5)
+                        .frame(width: 5, height: 5)
                         .foregroundColor(Color.gray)
-                        .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.3), radius: 2, x: -0.5, y: -0.5)
-                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.3), radius: 1, x: 0.5, y: 0.5)
-                    .padding(5)
-                    
+                        .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.3),
+                                radius: 2, x: -0.5, y: -0.5)
+                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.3),
+                                radius: 1, x: 0.5, y: 0.5)
+                        .padding(5)
                 }
                 
                 Text(self.text)
                     .foregroundColor(Color.gray)
-                    .font(.system(size: 10))
+                    .font(.caption)
+                    .fontWeight(.semibold)
             }
            
         
@@ -83,20 +83,21 @@ struct ActiveCircle: View {
             ZStack {
                 Circle()
                     .frame(width: 15, height: 15)
-                    .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.431372549, blue: 0.2274509804, alpha: 1)))
-                    //.shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.9), radius: 2, x: -0.2, y: -0.5)
-                .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.4), radius: 1, x: 0.5, y: 0.5)
+                    .foregroundColor(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.4),
+                            radius: 1, x: 0.5, y: 0.5)
                 
                 Circle()
-                .frame(width: 5, height: 5)
-                    .foregroundColor(Color(#colorLiteral(red: 0.8892078996, green: 0.8839221597, blue: 0.893271029, alpha: 1)))
-                .padding(5)
+                    .frame(width: 5, height: 5)
+                    .foregroundColor(Color.white)
+                    .padding(5)
                 
                     
             }
             Text(self.text)
-            .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.431372549, blue: 0.2274509804, alpha: 1)))
-            .font(.system(size: 10))
+            .foregroundColor(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+            .font(.caption)
+            .fontWeight(.semibold)
         }
         
         
@@ -111,19 +112,22 @@ struct FinishedCircle: View {
             ZStack {
                 Circle()
                     .frame(width: 10, height: 10)
-                    .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.431372549, blue: 0.2274509804, alpha: 1)))
-                .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.3), radius: 2, x: -0.5, y: -0.5)
-                .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.3), radius: 1, x: 0.5, y: 0.5)
+                    .foregroundColor(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+                    .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.3),
+                            radius: 2, x: -0.5, y: -0.5)
+                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.3),
+                            radius: 1, x: 0.5, y: 0.5)
                 
                 Circle()
-                .frame(width: 4, height: 4)
-                    .foregroundColor(Color(#colorLiteral(red: 0.8892078996, green: 0.8839221597, blue: 0.893271029, alpha: 1)))
-                .padding(5)
+                    .frame(width: 4, height: 4)
+                    .foregroundColor(Color.white)
+                    .padding(5)
             }
             
             Text(self.text)
-            .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.431372549, blue: 0.2274509804, alpha: 1)))
-            .font(.system(size: 10))
+                .foregroundColor(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+                .font(.caption)
+                .fontWeight(.semibold)
         }
     }
 }
