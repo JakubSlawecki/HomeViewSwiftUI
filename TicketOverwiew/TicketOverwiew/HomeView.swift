@@ -9,63 +9,69 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var control: TicketCardView_Control
+    @Binding var showCreateTicket: Bool
+    //change cardData to real tickets
+    var tickets = cardData
     
     var body: some View {
-        VStack {
-            ScrollView(.vertical, showsIndicators: true) {
-                HStack {
-                    Spacer()
-                    
-                    VStack(spacing: 30) {
-                        TicketCellView(ticket: Ticket(title: "Dummy ticket", text: "body"))
-                        TicketCellView(ticket: Ticket(title: "Dummy ticket2", text: "body"))
-                        TicketCellView(ticket: Ticket(title: "Dummy ticket3", text: "body"))
-                        TicketCellView(ticket: Ticket(title: "Dummy ticket4", text: "body"))
-                        TicketCellView(ticket: Ticket(title: "Dummy ticket5", text: "body"))
-                        TicketCellView(ticket: Ticket(title: "Dummy ticket6", text: "body"))
-                    }
-                    
-                    Spacer()
-                }
-//                VStack(spacing: 30) {
-//                    ForEach(sectionData) { ticket in
-//
-//                        TicketCellView(ticket: ticket)
-//
-//
-//
-//
-//
-//                    }
-//                }
-//                .padding(30)
+        
+        ScrollView {
+            TopMenu(showCreateTicket: $showCreateTicket)
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+               //.padding(.bottom, 5)
+            
+            ForEach(self.tickets) { ticked in
+                TickedCardView (
+                    title: ticked.title,
+                    subtitle: ticked.subtitle,
+                    briefSummary: ticked.briefSummary,
+                    description: ticked.description
+                )
+                    .environmentObject(self.control)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 30)
             }
         }
+        
+        
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(showCreateTicket: .constant(false))
+            .environmentObject(TicketCardView_Control())
+    }
+}
+
+struct TopMenu: View {
+    @Binding var showCreateTicket: Bool
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("WED, JULY 31")
+                .font(.caption)
+                .padding(.bottom, -10)
+                .foregroundColor(.gray)
+            
+            HStack(alignment: .center) {
+                Text("Tickets")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                Spacer()
+                
+                ShowActionButton(systemSymbol: "plus") {
+                    self.showCreateTicket.toggle()
+                }
+            }
+        }
     }
 }
 
 
-let screen = UIScreen.main.bounds
 
 
-let sectionData = [
-    Ticket(title: "First Ticket", text: "title Ticket"),
-    Ticket(title: "Second Ticket", text: "title Ticket"),
-    Ticket(title: "Third Ticket", text: "title Ticket"),
-    Ticket(title: "Fourth Ticket", text: "titl Ticket "),
-    Ticket(title: "Fifth Ticket", text: "title Ticket")
-]
-
-struct Ticket: Identifiable {
-    var id = UUID()
-    
-    var title: String
-    var text: String
-}
 

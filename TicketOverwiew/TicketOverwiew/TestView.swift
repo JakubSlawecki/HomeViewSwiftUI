@@ -13,26 +13,26 @@ struct TestView: View {
     @Binding var showCreateTicket: Bool
     
     var body: some View {
+        
         ZStack {
             MapView()
                 .edgesIgnoringSafeArea(.all)
             
-            VStack {
-                HStack {
-                    Button(action: { self.showCreateTicket.toggle() }) {
+        
+                
+                Button(action: { self.showCreateTicket = false }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
                         Text("Back")
                     }
-                    
-                    Spacer()
                 }
-                .padding()
-                
-                Spacer()
-            }
             
         }
+        
     }
 }
+
+
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
@@ -60,4 +60,19 @@ struct MapView: UIViewRepresentable {
   
   func updateUIView(_ uiView: MKMapView, context: Context) {
   }
+}
+
+
+struct BackButton: View {
+    let label: String
+    let closure: () -> ()
+
+    var body: some View {
+        Button(action: { self.closure() }) {
+            HStack {
+                Image(systemName: "chevron.left")
+                Text(label)
+            }
+        }
+    }
 }

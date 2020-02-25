@@ -14,9 +14,11 @@
 		C65AD85323FFC6FE00E09735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C65AD85223FFC6FE00E09735 /* Preview Assets.xcassets */; };
 		C65AD85623FFC6FE00E09735 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65AD85423FFC6FE00E09735 /* LaunchScreen.storyboard */; };
 		C65AD85E23FFC74300E09735 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD85D23FFC74300E09735 /* HomeView.swift */; };
-		C65AD86023FFC75A00E09735 /* TicketCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD85F23FFC75A00E09735 /* TicketCellView.swift */; };
+		C65AD86023FFC75A00E09735 /* TicketCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD85F23FFC75A00E09735 /* TicketCardView.swift */; };
 		C65AD86223FFC76800E09735 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AD86123FFC76800E09735 /* MenuView.swift */; };
-		C69901F623FFCE3800190EC4 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F523FFCE3800190EC4 /* PlusButton.swift */; };
+		C65C6D0F24040BC6004E21A6 /* TicketStatusProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D0E24040BC6004E21A6 /* TicketStatusProgressView.swift */; };
+		C65C6D112404185F004E21A6 /* StatusCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65C6D102404185F004E21A6 /* StatusCircle.swift */; };
+		C69901F623FFCE3800190EC4 /* ShowActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F523FFCE3800190EC4 /* ShowActionButton.swift */; };
 		C69901F823FFCEBA00190EC4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69901F723FFCEBA00190EC4 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +32,11 @@
 		C65AD85523FFC6FE00E09735 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C65AD85723FFC6FE00E09735 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C65AD85D23FFC74300E09735 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		C65AD85F23FFC75A00E09735 /* TicketCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCellView.swift; sourceTree = "<group>"; };
+		C65AD85F23FFC75A00E09735 /* TicketCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardView.swift; sourceTree = "<group>"; };
 		C65AD86123FFC76800E09735 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		C69901F523FFCE3800190EC4 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
+		C65C6D0E24040BC6004E21A6 /* TicketStatusProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStatusProgressView.swift; sourceTree = "<group>"; };
+		C65C6D102404185F004E21A6 /* StatusCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCircle.swift; sourceTree = "<group>"; };
+		C69901F523FFCE3800190EC4 /* ShowActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowActionButton.swift; sourceTree = "<group>"; };
 		C69901F723FFCEBA00190EC4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,9 +94,11 @@
 			children = (
 				C65AD84D23FFC6FD00E09735 /* Home.swift */,
 				C65AD85D23FFC74300E09735 /* HomeView.swift */,
-				C65AD85F23FFC75A00E09735 /* TicketCellView.swift */,
+				C65AD85F23FFC75A00E09735 /* TicketCardView.swift */,
 				C65AD86123FFC76800E09735 /* MenuView.swift */,
-				C69901F523FFCE3800190EC4 /* PlusButton.swift */,
+				C69901F523FFCE3800190EC4 /* ShowActionButton.swift */,
+				C65C6D0E24040BC6004E21A6 /* TicketStatusProgressView.swift */,
+				C65C6D102404185F004E21A6 /* StatusCircle.swift */,
 				C69901F723FFCEBA00190EC4 /* TestView.swift */,
 			);
 			path = TicketOverwiew;
@@ -169,14 +175,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C65AD86023FFC75A00E09735 /* TicketCellView.swift in Sources */,
+				C65AD86023FFC75A00E09735 /* TicketCardView.swift in Sources */,
 				C65AD86223FFC76800E09735 /* MenuView.swift in Sources */,
+				C65C6D0F24040BC6004E21A6 /* TicketStatusProgressView.swift in Sources */,
 				C65AD84A23FFC6FD00E09735 /* AppDelegate.swift in Sources */,
 				C65AD85E23FFC74300E09735 /* HomeView.swift in Sources */,
 				C69901F823FFCEBA00190EC4 /* TestView.swift in Sources */,
-				C69901F623FFCE3800190EC4 /* PlusButton.swift in Sources */,
+				C69901F623FFCE3800190EC4 /* ShowActionButton.swift in Sources */,
 				C65AD84C23FFC6FD00E09735 /* SceneDelegate.swift in Sources */,
 				C65AD84E23FFC6FD00E09735 /* Home.swift in Sources */,
+				C65C6D112404185F004E21A6 /* StatusCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Jakub-Slawecki.TicketOverwiew";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -344,7 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Jakub-Slawecki.TicketOverwiew";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

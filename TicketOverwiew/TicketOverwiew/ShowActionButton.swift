@@ -8,20 +8,22 @@
 
 import SwiftUI
 
-struct PlusButton: View {
-    @Binding var showCreateTicket: Bool
+struct ShowActionButton: View {
+    //@Binding var showCreateTicket: Bool
+    let systemSymbol: String
+    let closure: () -> ()
     
     var body: some View {
         
-        Button(action: { self.showCreateTicket.toggle() }) {
-        Image(systemName: "plus")
+        Button(action: { self.closure() }) {
+        Image(systemName: systemSymbol)
             .renderingMode(.original)
             .font(.system(size: 16, weight: .medium))
             .frame(width: 36, height: 36)
             .background(Color.white)
             .clipShape(Circle())
             .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+            .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 3)
         }
 
         
@@ -30,6 +32,6 @@ struct PlusButton: View {
 
 struct PlusButton_Previews: PreviewProvider {
     static var previews: some View {
-        PlusButton(showCreateTicket: .constant(false))
+        ShowActionButton(systemSymbol: "plus", closure: {})
     }
 }

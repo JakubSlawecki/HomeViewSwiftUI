@@ -10,22 +10,29 @@ import SwiftUI
 
 struct Home: View {
     @State var showCreateTicket = false
+    @ObservedObject var control = TicketCardView_Control()
     
     var body: some View {
+        
         ZStack {
             NavigationView {
-                HomeView()
-                    .navigationBarTitle("Ticket Overview")
+                
+                HomeView(showCreateTicket: $showCreateTicket)
+                    .navigationBarHidden(true)
+                    .environmentObject(self.control)
+                    .navigationBarTitle("Tickets")
                     .navigationBarItems(trailing:
-                        PlusButton(showCreateTicket: $showCreateTicket)
+                        NavigationLink(destination:
+                            TestView(showCreateTicket: $showCreateTicket),
+                                       isActive: $showCreateTicket,
+                                       label: { EmptyView() })
                     )
+                
             }
-            
-            TestView(showCreateTicket: $showCreateTicket)
-                .offset(y: showCreateTicket ? 0 : screen.height)
-                .animation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0))
         }
+        
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -33,3 +40,6 @@ struct ContentView_Previews: PreviewProvider {
         Home()
     }
 }
+
+
+
