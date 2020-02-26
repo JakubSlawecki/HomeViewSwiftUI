@@ -34,6 +34,9 @@ struct TickedCardView: View {
                                     briefSummary: self.briefSummary,
                                     description: self.description,
                                     normalCardHeight: self.normalCardHeight)
+                
+
+                
                 .onTapGesture {
                     withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
                         self.isSelected.toggle()
