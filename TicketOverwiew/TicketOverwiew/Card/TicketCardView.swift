@@ -13,8 +13,38 @@ class TicketCardView_Control: ObservableObject {
 }
 
 struct TickedCardView: View {
-    @State var isSelected = false
     @EnvironmentObject var control: TicketCardView_Control
+    @State var isDetectingLongPress = false
+    @State var isSelected = false
+    
+    
+    var longPressAndRelese: some Gesture {
+        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+            .onChanged { longPress in
+                withAnimation(.easeIn(duration: 0.15)) {
+                    self.isDetectingLongPress = true
+                }
+            }
+            .onEnded { finished in
+                    self.isDetectingLongPress = false
+                
+                withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
+                    self.isSelected = true
+                    self.control.anyTicketTriggered = true
+                }
+            }
+    }
+    
+    var press: some Gesture {
+        TapGesture()
+            .onEnded { finished in
+                withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
+                    self.isSelected = true
+                    self.control.anyTicketTriggered = true
+                    }
+            }
+    }
+    
     
     var title: String
     var subtitle: String
@@ -28,27 +58,27 @@ struct TickedCardView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            TicketCardViewContainer(isSelected: self.$isSelected,
-                                    title: self.title,
-                                    subtitle: self.subtitle,
-                                    briefSummary: self.briefSummary,
-                                    description: self.description,
-                                    normalCardHeight: self.normalCardHeight)
+            CardView(isSelected: self.$isSelected,
+                     title: self.title,
+                     subtitle: self.subtitle,
+                     briefSummary: self.briefSummary,
+                     description: self.description,
+                     normalCardHeight: self.normalCardHeight)
                 
-
-                
-                .onTapGesture {
-                    withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
-                        self.isSelected.toggle()
-                        self.control.anyTicketTriggered.toggle()
-                    }
-                }
+                .environmentObject(self.control)
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
                 .offset(x: self.isSelected ? -geometry.frame(in: .global).minX : 0,
                         y: self.isSelected ? -geometry.frame(in: .global).minY : 0)
+                .scaleEffect(self.isDetectingLongPress ? 0.95 : 1)
+                
+                //To do make it work together and with scrollView
+                .gesture(self.press)
+                .gesture(self.longPressAndRelese)
+                
                 .frame(height: self.isSelected ? screen.height : nil)
                 .frame(width: self.isSelected ? screen.width : nil)
+                
         }
         
             .frame(width: screen.width - (normalCardHorizontalPadding * 2))
@@ -67,16 +97,28 @@ struct TickedCardView_Previews: PreviewProvider {
             TickedCardView(isSelected: false, title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer)
                 .environmentObject(TicketCardView_Control())
             
-            TicketCardViewContainer(isSelected: .constant(true), title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer, normalCardHeight: CGFloat(350))
+            CardView(isSelected: .constant(true), title: "Apointment", subtitle: "20.02.2020", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer, normalCardHeight: CGFloat(350))
+                .environmentObject(TicketCardView_Control())
         }
         
     }
 }
 
 
-struct TicketCardViewContainer: View {
+struct CardView: View {
+    @EnvironmentObject var control: TicketCardView_Control
     @Binding var isSelected: Bool
     @State var viewState = CGSize.zero
+    
+    var dragSelectedCard: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                self.viewState = value.translation
+            }
+            .onEnded { value in
+                self.viewState = .zero
+            }
+    }
     
     var title: String
     var subtitle: String
@@ -93,6 +135,7 @@ struct TicketCardViewContainer: View {
                         subtitle: self.subtitle,
                         briefSummary: self.briefSummary)
                     
+                    .environmentObject(self.control)
                     .frame(height: self.normalCardHeight)
                     //.background(Color.clear)
                 
@@ -106,17 +149,14 @@ struct TicketCardViewContainer: View {
             .background(Color.white)
             .offset(y: self.isSelected ? self.viewState.height/2 : 0)
             .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
-            .gesture(self.isSelected ?
-                (DragGesture().onChanged { value in
-                    self.viewState = value.translation }
-                                .onEnded { value in
-                                    self.viewState = .zero }) : (nil))
+            .gesture(self.isSelected ? (self.dragSelectedCard) : (nil))
         }
         
     }
 }
 
 struct TopView: View {
+    @EnvironmentObject var control: TicketCardView_Control
     @Binding var isSelected: Bool
     
     var title: String
@@ -127,6 +167,29 @@ struct TopView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {
+                HStack {
+                    Spacer()
+                    if self.isSelected {
+                        Button(action: {
+                            withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
+                                self.isSelected = false
+                                self.control.anyTicketTriggered = false
+                            }
+                            
+                            })
+                        {
+                        Image(systemName: "xmark.circle.fill")
+                            .renderingMode(.original)
+                            .font(.system(size: 30, weight: .medium))
+                            .opacity(0.7)
+                        }
+                    }
+                    
+                    
+                }
+                .edgesIgnoringSafeArea(.top)
+                .padding(.top, 40)
+                .padding(.trailing, 25)
                 
                 Spacer()
                 

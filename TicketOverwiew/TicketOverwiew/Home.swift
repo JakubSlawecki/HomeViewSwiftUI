@@ -29,6 +29,7 @@ struct Home: View {
                     )
                 
             }
+            .statusBar(hidden: self.control.anyTicketTriggered)
         }
         
     }

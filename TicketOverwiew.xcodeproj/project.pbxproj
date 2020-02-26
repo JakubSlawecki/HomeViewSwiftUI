@@ -96,12 +96,12 @@
 			children = (
 				C65AD84D23FFC6FD00E09735 /* Home.swift */,
 				C65AD85D23FFC74300E09735 /* HomeView.swift */,
-				C65AD85F23FFC75A00E09735 /* TicketCardView.swift */,
 				C65AD86123FFC76800E09735 /* MenuView.swift */,
+				C65C6D25240672E2004E21A6 /* Card */,
+				C65C6D2024054DA9004E21A6 /* StatusProgressBar */,
 				C69901F523FFCE3800190EC4 /* ShowActionButton.swift */,
 				C65C6D232405BCE5004E21A6 /* SystemMaterialView.swift */,
 				C69901F723FFCEBA00190EC4 /* TestView.swift */,
-				C65C6D2024054DA9004E21A6 /* StatusProgressBar */,
 			);
 			path = TicketOverwiew;
 			sourceTree = "<group>";
@@ -113,6 +113,14 @@
 				C65C6D1B24054D7F004E21A6 /* StatusCircle.swift */,
 			);
 			path = StatusProgressBar;
+			sourceTree = "<group>";
+		};
+		C65C6D25240672E2004E21A6 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				C65AD85F23FFC75A00E09735 /* TicketCardView.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
