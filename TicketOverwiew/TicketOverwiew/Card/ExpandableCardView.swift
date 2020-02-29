@@ -90,13 +90,13 @@ struct ExpandableCardView: View {
             .drawingGroup() //test it
                 
             //MARK: Card Appearance
-            .background(Color.white)
+            .background(Color(.secondarySystemGroupedBackground))
             .environmentObject(self.control)
             .clipShape(RoundedRectangle(cornerRadius: self.isSelected ? 0 : 15, style: .continuous))
             .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
             .shadow(color: Color.black.opacity(0.03), radius: 4, x: 0, y: 7)
             
-            //MARK: Animation end effect
+            //MARK: Animation end effect (globa/local)
             .scaleEffect(self.isDetectingLongPress ? 0.95 : 1)
 ///           to test on preview change (in: .global) to (in: .local)
 ///            .offset(x: self.isSelected ? -geometry.frame(in: .local).minX : 0,
@@ -145,12 +145,12 @@ struct TopView: View {
                     VStack(alignment: .leading) {
                         Text(self.ticket.subtitle)
                             .font(.caption)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(.label))
                             .lineLimit(1)
                         
                         Text(self.ticket.title)
                             .font(.headline)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(.label))
                             .lineLimit(2)
                     }
                     
@@ -161,8 +161,7 @@ struct TopView: View {
                             withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
                                 self.isSelected = false
                                 self.control.anyTicketTriggered = false }}) {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .renderingMode(.original)
+                                    Image(systemName: "xmark.circle.fill").foregroundColor(Color(.label))
                                         .font(.system(size: 30, weight: .medium))
                                         .opacity(0.7)
                         }
@@ -180,7 +179,7 @@ struct TopView: View {
                 //MARK: Bottom part
                 HStack(alignment: .center) {
                     Text(self.ticket.briefSummary)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(.label))
                         .font(.caption)
                         .lineLimit(3)
                     Spacer()
@@ -203,7 +202,7 @@ struct ExpandableView: View {
     var body: some View {
         Text(self.ticket.description)
             .font(.body)
-            .foregroundColor(.black)
+            .foregroundColor(Color(.label))
             .padding()
     }
 }
@@ -214,7 +213,15 @@ struct ExpandableView: View {
 //MARK: Preview
 struct TickedCardView_Previews: PreviewProvider {
     static var previews: some View {
+        
+        Group {
             ExpandableCardView(isSelected: false, ticket: Ticket(subtitle: "20.02.2020", title: "Apointment", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer))
                 .environmentObject(TicketCardView_Control())
+            .environment(\.colorScheme, .light)
+            
+            ExpandableCardView(isSelected: false, ticket: Ticket(subtitle: "20.02.2020", title: "Apointment", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer))
+                    .environmentObject(TicketCardView_Control())
+                .environment(\.colorScheme, .dark)
+        }
     }
 }

@@ -48,8 +48,12 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         
-        HomeView(showCreateTicket: .constant(false))
-            .environmentObject(TicketCardView_Control())
+        Group {
+            HomeView(showCreateTicket: .constant(false))
+                .environmentObject(TicketCardView_Control())
+                .environment(\.colorScheme, .light)
+         
+        }
         
     }
     

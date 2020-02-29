@@ -43,14 +43,28 @@ struct SystemMaterialView_Previews: PreviewProvider {
                     HStack {
                         Color.white
                             
-                        Color.green
+                      
                     }
                     .padding(.horizontal)
                     
+                   
+                    .padding(.horizontal)
+                }
+            
+                
+                SystemMaterialView(style: .systemUltraThinMaterial)
+                    .frame(width: 200, height: 200)
+                    .environment(\.colorScheme, .light)
+            }
+            
+            ZStack {
+                VStack {
+                    
+                    
                     HStack {
-                        Color.red
+                        Color.black
                             
-                        Color.blue
+                      
                     }
                     .padding(.horizontal)
                 }
@@ -58,28 +72,7 @@ struct SystemMaterialView_Previews: PreviewProvider {
                 
                 SystemMaterialView(style: .regular)
                     .frame(width: 200, height: 200)
-            }
-            
-            ZStack {
-                VStack {
-                    HStack {
-                        Color.white
-                            
-                        Color.green
-                    }
-                    .padding(.horizontal)
-                    
-                    HStack {
-                        Color.red
-                            
-                        Color.blue
-                    }
-                    .padding(.horizontal)
-                }
-            
-                
-                SystemMaterialView(style: .systemUltraThinMaterial)
-                    .frame(width: 200, height: 200)
+                .environment(\.colorScheme, .dark)
             }
         }
     }
