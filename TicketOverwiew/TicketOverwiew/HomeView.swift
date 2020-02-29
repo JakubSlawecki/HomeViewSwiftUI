@@ -64,14 +64,14 @@ struct ScrollViewTitleView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("WED, JULY 31")
+            Text("MON, FEBUARY 31")
                 .font(.caption)
                 .fontWeight(.semibold)
                 .padding(.bottom, -5)
                 .foregroundColor(Color(.secondaryLabel))
             
             HStack(alignment: .center) {
-                Text("Tickets")
+                Text("Title")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color(.label))
@@ -101,13 +101,14 @@ struct Ticket : Identifiable {
     var title: String
     var briefSummary: String
     var description: String
+    var image: String
 }
 
 let desPlaceholer = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna ac. Quis enim lobortis scelerisque fermentum. Phasellus faucibus scelerisque eleifend donec pretium. Nec ullamcorper sit amet risus nullam eget. Convallis convallis tellus id interdum velit."
 
 let cardData: [Ticket] = [
-    Ticket(subtitle: "24.02.2020", title: "Apointment Confirmed", briefSummary: "Our technicians will be there on Wednesday February 26, 2020.", description: desPlaceholer),
-    Ticket(subtitle: "21.02.2020", title: "Apointment Ongoing", briefSummary: "our technicians will be there on Monday February 24, 2020", description: desPlaceholer),
-    Ticket(subtitle: "21.02.2020", title: "Apointment Done", briefSummary: "Job Done", description: desPlaceholer),
-    Ticket(subtitle: "20.02.2020", title: "Apointment Done", briefSummary: "Job Done etc", description: desPlaceholer),
+    Ticket(subtitle: "24.02.2020", title: "Title", briefSummary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.", description: desPlaceholer, image: "img2"),
+    Ticket(subtitle: "21.02.2020", title: "Title 2", briefSummary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", description: desPlaceholer, image: "img3"),
+    Ticket(subtitle: "21.02.2020", title: "Title 3", briefSummary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", description: desPlaceholer, image: "img4"),
+    Ticket(subtitle: "20.02.2020", title: "Title 4", briefSummary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", description: desPlaceholer, image: "img1"),
 ]

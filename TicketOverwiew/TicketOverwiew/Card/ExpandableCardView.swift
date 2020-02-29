@@ -87,7 +87,7 @@ struct ExpandableCardView: View {
                 .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
                 .gesture(self.isSelected ? (self.dragSelectedCard) : (nil))
             } //ZStack
-            .drawingGroup() //test it
+            //.drawingGroup() //test it
                 
             //MARK: Card Appearance
             .background(Color(.secondarySystemGroupedBackground))
@@ -122,7 +122,6 @@ struct ExpandableCardView: View {
 
 
 //MARK: TopView
-
 struct TopView: View {
     @EnvironmentObject var control: TicketCardView_Control
     @Binding var isSelected: Bool
@@ -132,60 +131,77 @@ struct TopView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .center, spacing: 0) {
-                if self.isSelected {
-                    Rectangle()
-                        .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color.clear)
-                }
-                
-                //MARK: Upper part
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(self.ticket.subtitle)
-                            .font(.caption)
-                            .foregroundColor(Color(.label))
-                            .lineLimit(1)
+            ZStack {
+                ZStack {
+                    Image(self.ticket.image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+                    VStack {
+                        Spacer()
                         
-                        Text(self.ticket.title)
-                            .font(.headline)
-                            .foregroundColor(Color(.label))
-                            .lineLimit(2)
+                        SystemMaterialView(style: .regular)
+                            .frame(height: 45)
                     }
-                    
-                    Spacer()
-                    
-                    if self.isSelected {
-                        Button(action: {
-                            withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
-                                self.isSelected = false
-                                self.control.anyTicketTriggered = false }}) {
-                                    Image(systemName: "xmark.circle.fill").foregroundColor(Color(.label))
-                                        .font(.system(size: 30, weight: .medium))
-                                        .opacity(0.7)
-                        }
-                    }
-                } //HStack
-                .padding(.top)
-                .padding(.horizontal)
-                
-                
-                Spacer()
-                //MARK: Middle part
-                Spacer()
-                
-                
-                //MARK: Bottom part
-                HStack(alignment: .center) {
-                    Text(self.ticket.briefSummary)
-                        .foregroundColor(Color(.label))
-                        .font(.caption)
-                        .lineLimit(3)
-                    Spacer()
                 }
-                .padding(.horizontal)
-                .padding(.bottom)
+                
+                    
+                
+                VStack(alignment: .center, spacing: 0) {
+                    if self.isSelected {
+                        Rectangle()
+                            .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color.clear)
+                    }
+                    
+                    //MARK: Upper part
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(self.ticket.subtitle)
+                                .font(.caption)
+                                .foregroundColor(Color(.label))
+                                .lineLimit(1)
+                            
+                            Text(self.ticket.title)
+                                .font(.headline)
+                                .foregroundColor(Color(.label))
+                                .lineLimit(2)
+                        }
+                        
+                        Spacer()
+                        
+                        if self.isSelected {
+                            Button(action: {
+                                withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
+                                    self.isSelected = false
+                                    self.control.anyTicketTriggered = false }}) {
+                                        Image(systemName: "xmark.circle.fill").foregroundColor(Color(.label))
+                                            .font(.system(size: 30, weight: .medium))
+                                            .opacity(0.7)
+                            }
+                        }
+                    } //HStack
+                    .padding(.top)
+                    .padding(.horizontal)
+                    
+                    
+                    Spacer()
+                    //MARK: Middle part
+                    Spacer()
+                    
+                    
+                    //MARK: Bottom part
+                    HStack(alignment: .center) {
+                        Text(self.ticket.briefSummary)
+                            .foregroundColor(Color(.label))
+                            .font(.caption)
+                            .lineLimit(3)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 6)
+                }
             }
         }
     }
@@ -215,11 +231,11 @@ struct TickedCardView_Previews: PreviewProvider {
     static var previews: some View {
         
         Group {
-            ExpandableCardView(isSelected: false, ticket: Ticket(subtitle: "20.02.2020", title: "Apointment", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer))
+            ExpandableCardView(isSelected: false, ticket: Ticket(subtitle: "20.02.2020", title: "Title", briefSummary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", description: desPlaceholer, image: "img2"))
                 .environmentObject(TicketCardView_Control())
             .environment(\.colorScheme, .light)
             
-            ExpandableCardView(isSelected: false, ticket: Ticket(subtitle: "20.02.2020", title: "Apointment", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer))
+            ExpandableCardView(isSelected: false, ticket: Ticket(subtitle: "20.02.2020", title: "Apointment", briefSummary: "Our technicians will be there on Monday 24 of Febuary 2020.", description: desPlaceholer, image: "img2"))
                     .environmentObject(TicketCardView_Control())
                 .environment(\.colorScheme, .dark)
         }
